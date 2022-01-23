@@ -1,0 +1,17 @@
+
+*{
+    padding:0;
+    margin:0;
+}
+.options{
+    padding:10px;
+}
+.input-group{
+padding-top:10px;
+padding-left: 10px;
+padding-bottom: 10px;
+}
+
+table{
+    padding:10px;
+}
