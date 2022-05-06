@@ -86,7 +86,7 @@ while (l.length)
         }
     )
 }
-function filterProblems(minRating,maxRating){
+ function filterProblems(minRating,maxRating){
 problemTable.querySelectorAll('tr').forEach((element)=>{
     element.querySelectorAll('td').forEach((td,index)=>{
         const indexRating=index*100+800
@@ -145,13 +145,55 @@ getRatingData().then(
             )
            
         })
-        const filterbtn=  document.querySelector('#filterbtn')
-        filterbtn.disabled=false
-            filterbtn.addEventListener('click',(event)=>{
-                const minval=   parseInt(document.querySelector('.minRating').value)
-                const maxval=parseInt(document.querySelector('.maxRating').value)
-                filterProblems(minval,maxval)
+        const circle=document.querySelector('.circle')
+const circle2=document.querySelector('.circle2')
+function dragElement(element,initvalue){
+let pos1=0,pos2=0
 
-            })
+let value=initvalue
+element.dataset.value=value
+element.onmousedown=(e)=>{
+    console.log("mouse down")
+    e.preventDefault()
+    pos2=e.clientX
+    
+    document.onmousemove=(ev1)=>{
+        ev1.preventDefault()
+        pos1=pos2-ev1.clientX
+        pos2=ev1.clientX
+        let val=element.offsetLeft-pos1
+        const minx=element.parentNode.offsetLeft
+        const maxx=element.parentNode.offsetLeft+element.parentNode.clientWidth-element.clientWidth
+        val=Math.max(val,minx)
+        val=Math.min(val,maxx)
+        element.style.left=(val)+"px"
+        let newvalue=Math.round((val-minx)/(maxx-minx)*27)*100+800
+        if(newvalue!==value){
+           
+            value=newvalue
+            element.dataset.value=value
+            filterProblems(Math.min(parseInt(circle.dataset.value),parseInt(circle2.dataset.value)),Math.max(parseInt(circle.dataset.value),parseInt(circle2.dataset.value)))
+        }
+        element.textContent=newvalue
+        
+     
+      
+    }
+    document.onmouseup=(ev2)=>{
+        document.onmousemove=null
+        document.onmouseup=null
+    }
+}
+}
+console.log(circle.parentNode.offsetTop)
+
+document.querySelector('.line').style.display='block';
+circle.style.display='block';
+circle2.style.display='block';
+circle.style.top=circle.parentNode.offsetTop+"px"
+circle2.style.top=circle2.parentNode.offsetTop+"px"
+circle2.style.left=(circle2.parentNode.offsetLeft+circle2.parentNode.clientWidth-circle2.clientWidth)+"px"
+dragElement(circle,800)
+dragElement(circle2,3500)
     }
 )
