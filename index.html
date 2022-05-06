@@ -21,6 +21,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.-->
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,10 +35,9 @@ THE SOFTWARE.-->
             <input type="text" placeholder="handle" class="handleinput">
             <button class="btn btn-outline-secondary" id="searchbtn" disabled>Search</button>
         </div>
-        <div class="filter">
-            <input type="number" placeholder="minRating" class="minRating" min="800" max="3500" step="100">
-            <input type="number" placeholder="maxRating" class="maxRating" min="800" max="3500" step="100">
-            <button class="btn btn-primary" id="filterbtn" disabled>filter</button>
+        <div class="filter" >
+            <div class="line">
+                <div class="circle" >800</div> <div class="circle2" >3500</div></div>
         </div>
         </div>
         <table class="problems table table-bordered">
